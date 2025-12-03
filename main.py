@@ -599,7 +599,7 @@ class App:
                                         variable=self.has_border_var)
         has_border_cb.pack(anchor="w", pady=2)
 
-        self.create_numeric_control_frame(left_column, "FRAME_BORDER_RADIUS", "Border Radius", 2)
+        self.create_numeric_control_frame(left_column, "FRAME_BORDER_THICKNESS", "Border Thickness", 2)
 
         # Border Color
         border_color_frame = ttk.LabelFrame(left_column, text="Border Color", padding=10)

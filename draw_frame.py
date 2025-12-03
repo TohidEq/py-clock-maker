@@ -14,7 +14,7 @@ def draw_frame(configs_dic, preview=False, preview_window=False):
 
     radius = (
         min(width, height)//2
-        - (configs_dic["frame"]["FRAME_BORDER_RADIUS"] * configs_dic["frame"]["FRAME_SCALE"]
+        - (configs_dic["frame"]["FRAME_BORDER_THICKNESS"] * configs_dic["frame"]["FRAME_SCALE"]
            if configs_dic["frame"]["FRAME_HAS_BORDER"] else 0)
         - (configs_dic["frame"]["FRAME_CLOCK_PADDING"] * configs_dic["frame"]["FRAME_SCALE"])
     )
@@ -26,11 +26,11 @@ def draw_frame(configs_dic, preview=False, preview_window=False):
     )
 
     # draw clock border
-    if configs_dic["frame"]["FRAME_HAS_BORDER"] and configs_dic["frame"]["FRAME_BORDER_RADIUS"] > 0:
+    if configs_dic["frame"]["FRAME_HAS_BORDER"] and configs_dic["frame"]["FRAME_BORDER_THICKNESS"] > 0:
         draw.ellipse(
             [center[0]-radius, center[1]-radius, center[0]+radius, center[1]+radius],
             outline=configs_dic["frame"]["FRAME_BORDER_COLOR"],
-            width=configs_dic["frame"]["FRAME_BORDER_RADIUS"] * configs_dic["frame"]["FRAME_SCALE"]
+            width=configs_dic["frame"]["FRAME_BORDER_THICKNESS"] * configs_dic["frame"]["FRAME_SCALE"]
         )
 
     # draw hour marks

@@ -10,39 +10,40 @@ img_config_dic={
 
 configs_dic = {
     "pointer": {
-        "POINTER_SHAPE": "circle",
-        "POINTER_SCALE": 4,
-        "POINTER_START_AT": 80,
-        "POINTER_LENGTH": 20,
-        "POINTER_THICKNESS": 10,
-        "POINTER_COLOR": (255, 0, 0, 150),
+        "POINTER_SHAPE": "line",
+        "POINTER_SCALE": 3,
+        "POINTER_START_AT": 90,
+        "POINTER_LENGTH": 25,
+        "POINTER_THICKNESS": 6,
+        "POINTER_COLOR": (0, 0, 0, 200),
         "POINTER_ROUND_START": True,
         "POINTER_ROUND_END": True,
-        "POINTER_SIZE": 200,
+        "POINTER_SIZE": 180,
     },
     "frame": {
-        "FRAME_SCALE": 4,
-        "FRAME_CLOCK_PADDING": 10,
-        "FRAME_HAS_BORDER": True,
-        "FRAME_BORDER_RADIUS": 2,
+        "FRAME_SCALE": 3,
+        "FRAME_CLOCK_PADDING": 5,
+        "FRAME_HAS_BORDER": False,
+        "FRAME_BORDER_THICKNESS": 0,
         "FRAME_BORDER_COLOR": (0, 0, 0, 255),
-        "FRAME_CLOCK_BG_COLOR": (255, 255, 255, 100),
-        "FRAME_HAS_NUMBERS": True,
-        "FRAME_NUMBER_SHAPE": "rectangle",
-        "FRAME_NUMBER_LENGTH": 20,
-        "FRAME_NUMBER_THICKNESS": 4,
-        "FRAME_NUMBER_COLOR": (200, 0, 0, 100),
-        "FRAME_NUMBER_OFFSET": 10,
-        "FRAME_NUMBER_RADIUS": 2,
+        "FRAME_CLOCK_BG_COLOR": (255, 255, 255, 255),
+        "FRAME_HAS_NUMBERS": False,
+        "FRAME_NUMBER_SHAPE": "line",
+        "FRAME_NUMBER_LENGTH": 10,
+        "FRAME_NUMBER_THICKNESS": 2,
+        "FRAME_NUMBER_COLOR": (0, 0, 0, 150),
+        "FRAME_NUMBER_OFFSET": 5,
+        "FRAME_NUMBER_RADIUS": 0,
         "FRAME_SPECIAL_NUMBERS": {
             3: {"length": -1, "thickness": -1, "color": None},
             6: {"length": -1, "thickness": -1, "color": None},
             9: {"length": -1, "thickness": -1, "color": None},
             12: {"length": -1, "thickness": -1, "color": None},
         },
-        "FRAME_SIZE": 200,
+        "FRAME_SIZE": 180,
     }
 }
+
 
 # AVAILABLE THEMES :: https://ttkthemes.readthedocs.io/en/latest/themes.html
 
