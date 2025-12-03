@@ -7,29 +7,29 @@ class App:
         self.configs_dic = {
             "pointer": {
                 "POINTER_SHAPE": "circle",
-                "POINTER_SCALE": 4.0,
-                "POINTER_START_AT": 80.0,
-                "POINTER_LENGTH": 20.0,
-                "POINTER_THICKNESS": 10.0,
+                "POINTER_SCALE": 4,
+                "POINTER_START_AT": 80,
+                "POINTER_LENGTH": 20,
+                "POINTER_THICKNESS": 10,
                 "POINTER_COLOR": (255, 0, 0, 150),
                 "POINTER_ROUND_START": True,
                 "POINTER_ROUND_END": True,
                 "POINTER_SIZE": 200,
             },
             "frame": {
-                "FRAME_SCALE": 4.0,
-                "FRAME_CLOCK_PADDING": 10.0,
+                "FRAME_SCALE": 4,
+                "FRAME_CLOCK_PADDING": 10,
                 "FRAME_HAS_BORDER": True,
-                "FRAME_BORDER_RADIUS": 2.0,
+                "FRAME_BORDER_RADIUS": 2,
                 "FRAME_BORDER_COLOR": (0, 0, 0, 255),
                 "FRAME_CLOCK_BG_COLOR": (255, 255, 255, 100),
                 "FRAME_HAS_NUMBERS": True,
                 "FRAME_NUMBER_SHAPE": "rectangle",
-                "FRAME_NUMBER_LENGTH": 20.0,
-                "FRAME_NUMBER_THICKNESS": 4.0,
+                "FRAME_NUMBER_LENGTH": 20,
+                "FRAME_NUMBER_THICKNESS": 4,
                 "FRAME_NUMBER_COLOR": (200, 0, 0, 100),
-                "FRAME_NUMBER_OFFSET": 10.0,
-                "FRAME_NUMBER_RADIUS": 2.0,
+                "FRAME_NUMBER_OFFSET": 10,
+                "FRAME_NUMBER_RADIUS": 2,
                 "FRAME_SPECIAL_NUMBERS": {3:{},6:{},9:{},12:{}},
                 "FRAME_SIZE": 200,
             }
@@ -97,13 +97,13 @@ class App:
     def create_frame_controls(self, parent):
         self.frame_numeric_vars = {}
         numeric_settings = [
-            ("FRAME_SCALE", "Frame Scale", 4.0),
-            ("FRAME_CLOCK_PADDING", "Clock Padding", 10.0),
-            ("FRAME_BORDER_RADIUS", "Border Radius", 2.0),
-            ("FRAME_NUMBER_LENGTH", "Number Length", 20.0),
-            ("FRAME_NUMBER_THICKNESS", "Number Thickness", 4.0),
-            ("FRAME_NUMBER_OFFSET", "Number Offset", 10.0),
-            ("FRAME_NUMBER_RADIUS", "Number Radius", 2.0),
+            ("FRAME_SCALE", "Frame Scale", 4),
+            ("FRAME_CLOCK_PADDING", "Clock Padding", 10),
+            ("FRAME_BORDER_RADIUS", "Border Radius", 2),
+            ("FRAME_NUMBER_LENGTH", "Number Length", 20),
+            ("FRAME_NUMBER_THICKNESS", "Number Thickness", 4),
+            ("FRAME_NUMBER_OFFSET", "Number Offset", 10),
+            ("FRAME_NUMBER_RADIUS", "Number Radius", 2),
         ]
         for key,label,default in numeric_settings:
             self.create_numeric_control_frame(parent, key, label, default)
@@ -135,10 +135,10 @@ class App:
                      values=["line","circle"], state="readonly").pack(pady=5)
 
         numeric_settings = [
-            ("POINTER_SCALE","Scale",4.0),
-            ("POINTER_START_AT","Start At",80.0),
-            ("POINTER_LENGTH","Length",20.0),
-            ("POINTER_THICKNESS","Thickness",10.0),
+            ("POINTER_SCALE","Scale",4),
+            ("POINTER_START_AT","Start At",80),
+            ("POINTER_LENGTH","Length",20),
+            ("POINTER_THICKNESS","Thickness",10),
             ("POINTER_SIZE","Pointer Size",200)
         ]
         for key,label,default in numeric_settings:
@@ -208,7 +208,7 @@ class App:
         hex_color = self.number_color_preview.cget("bg").lstrip('#')
         r=int(hex_color[0:2],16); g=int(hex_color[2:4],16); b=int(hex_color[4:6],16)
         self.configs_dic["frame"]["FRAME_NUMBER_COLOR"] = (r,g,b,150)
-        print("Updated configs:", self.configs_dic)
+        # print("Updated configs:", self.configs_dic)
 
     def rgb_to_hex(self,rgb):
         return f'#{rgb[0]:02x}{rgb[1]:02x}{rgb[2]:02x}'

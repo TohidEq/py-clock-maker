@@ -3,8 +3,8 @@ from PIL import Image, ImageDraw
 from IPython.display import display
 import math
 def draw_pointer(pos, configs_dic, preview=False, preview_window=False):
-    width, height = configs_dic["pointer"]["POINTER_IMG_WIDTH"] * configs_dic["pointer"]["POINTER_SCALE"], \
-                    configs_dic["pointer"]["POINTER_IMG_HEIGHT"] * configs_dic["pointer"]["POINTER_SCALE"]
+    width, height = int(configs_dic["pointer"]["POINTER_SIZE"] * configs_dic["pointer"]["POINTER_SCALE"]), \
+                    int(configs_dic["pointer"]["POINTER_SIZE"] * configs_dic["pointer"]["POINTER_SCALE"])
     cx, cy = width // 2, height // 2
 
     img = Image.new("RGBA", (width, height), (0,0,0,0))
@@ -58,7 +58,7 @@ def draw_pointer(pos, configs_dic, preview=False, preview_window=False):
 
     # anti-aliasing
     img_small = img.resize(
-        (configs_dic["pointer"]["POINTER_IMG_WIDTH"], configs_dic["pointer"]["POINTER_IMG_HEIGHT"]),
+        (configs_dic["pointer"]["POINTER_SIZE"], configs_dic["pointer"]["POINTER_SIZE"]),
         Image.Resampling.LANCZOS
     )
     if preview:
@@ -67,5 +67,3 @@ def draw_pointer(pos, configs_dic, preview=False, preview_window=False):
             img_small.show()
     else:
         return img_small
-
-draw_pointer(10)

@@ -4,8 +4,8 @@ from IPython.display import display
 import math
 
 def draw_frame(configs_dic, preview=False, preview_window=False):
-    width  = configs_dic["frame"]["FRAME_IMG_WIDTH"]  * configs_dic["frame"]["FRAME_SCALE"]
-    height = configs_dic["frame"]["FRAME_IMG_HEIGHT"] * configs_dic["frame"]["FRAME_SCALE"]
+    width  = int(configs_dic["frame"]["FRAME_SIZE"]  * configs_dic["frame"]["FRAME_SCALE"])
+    height = int(configs_dic["frame"]["FRAME_SIZE"] * configs_dic["frame"]["FRAME_SCALE"])
 
     img = Image.new("RGBA", (width, height), (0,0,0,0))
     draw = ImageDraw.Draw(img)
@@ -83,7 +83,7 @@ def draw_frame(configs_dic, preview=False, preview_window=False):
 
     # resize for anti-aliasing
     img_small = img.resize(
-        (configs_dic["frame"]["FRAME_IMG_WIDTH"], configs_dic["frame"]["FRAME_IMG_HEIGHT"]),
+        (configs_dic["frame"]["FRAME_SIZE"], configs_dic["frame"]["FRAME_SIZE"]),
         Image.Resampling.LANCZOS
     )
 
@@ -95,4 +95,3 @@ def draw_frame(configs_dic, preview=False, preview_window=False):
         return img_small
 
 
-draw_frame(1,1)
