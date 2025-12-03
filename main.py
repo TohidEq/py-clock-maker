@@ -11,58 +11,16 @@ from draw_pointer import draw_pointer
 
 from export_images import export_frame, export_pointer
 
+import config
 
 class App:
     def __init__(self):
-        self.img_config_dic={
-            "BASE_DIR":"./clockimgs/",
-            "FRAME_DIR":"frames/",
-            "POINTER_DIR":"hms/",
-            "H_POINTER_DIR":"h/",
-            "M_POINTER_DIR":"m/",
-            "S_POINTER_DIR":"s/"
-        }
-        self.configs_dic = {
-            "pointer": {
-                "POINTER_SHAPE": "circle",
-                "POINTER_SCALE": 4,
-                "POINTER_START_AT": 80,
-                "POINTER_LENGTH": 20,
-                "POINTER_THICKNESS": 10,
-                "POINTER_COLOR": (255, 0, 0, 150),
-                "POINTER_ROUND_START": True,
-                "POINTER_ROUND_END": True,
-                "POINTER_SIZE": 200,
-            },
-            "frame": {
-                "FRAME_SCALE": 4,
-                "FRAME_CLOCK_PADDING": 10,
-                "FRAME_HAS_BORDER": True,
-                "FRAME_BORDER_RADIUS": 2,
-                "FRAME_BORDER_COLOR": (0, 0, 0, 255),
-                "FRAME_CLOCK_BG_COLOR": (255, 255, 255, 100),
-                "FRAME_HAS_NUMBERS": True,
-                "FRAME_NUMBER_SHAPE": "rectangle",
-                "FRAME_NUMBER_LENGTH": 20,
-                "FRAME_NUMBER_THICKNESS": 4,
-                "FRAME_NUMBER_COLOR": (200, 0, 0, 100),
-                "FRAME_NUMBER_OFFSET": 10,
-                "FRAME_NUMBER_RADIUS": 2,
-                "FRAME_SPECIAL_NUMBERS": {
-                    3: {"length": None, "thickness": None, "color": None},
-                    6: {"length": None, "thickness": None, "color": None},
-                    9: {"length": None, "thickness": None, "color": None},
-                    12: {"length": None, "thickness": None, "color": None},
-                },
-                "FRAME_SIZE": 200,
-            }
-        }
+        self.img_config_dic=config.img_config_dic
+        self.configs_dic = config.configs_dic
+        self.root = ThemedTk(theme=config.WINDOW_THEME)
+        self.root.title(config.WINDOW_TITLE)
+        self.root.geometry(config.WINDOW_SIZE)
         self.img_labels = []
-
-
-        self.root = ThemedTk(theme="arc")
-        self.root.title("Dark Theme App")
-        self.root.geometry("1280x800")
         self.setup_ui()
 
 
