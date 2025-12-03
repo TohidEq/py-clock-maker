@@ -35,10 +35,10 @@ configs_dic = {
         "FRAME_NUMBER_OFFSET": 10,
         "FRAME_NUMBER_RADIUS": 2,
         "FRAME_SPECIAL_NUMBERS": {
-            3: {"length": None, "thickness": None, "color": None},
-            6: {"length": None, "thickness": None, "color": None},
-            9: {"length": None, "thickness": None, "color": None},
-            12: {"length": None, "thickness": None, "color": None},
+            3: {"length": -1, "thickness": -1, "color": None},
+            6: {"length": -1, "thickness": -1, "color": None},
+            9: {"length": -1, "thickness": -1, "color": None},
+            12: {"length": -1, "thickness": -1, "color": None},
         },
         "FRAME_SIZE": 200,
     }
@@ -50,7 +50,7 @@ configs_dic = {
 
 # TRY lowercase NAMES FOR THEME !!!
 
-WINDOW_THEME = ("arc")
+WINDOW_THEME = ("yaru")
 
 WINDOW_TITLE = ("🕐 Clock Maker")
 WINDOW_SIZE = ("1280x800")

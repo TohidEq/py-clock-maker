@@ -337,6 +337,10 @@ class App:
                                   command=self.apply_to_all_special_numbers)
         apply_all_btn.pack(pady=10)
 
+
+
+
+
     def create_special_number_control(self, parent, number):
         """Create controls for one special number"""
         frame = ttk.LabelFrame(parent, text=f"Number {number}", padding=10)
@@ -344,15 +348,30 @@ class App:
 
         # Initialize variables for this number if they don't exist
         if number not in self.special_numbers_vars:
+            # Get color value (could be tuple like (255,255,255,100))
+            color_value = self.configs_dic["frame"]["FRAME_SPECIAL_NUMBERS"][number]["color"] or \
+                        self.configs_dic["frame"]["FRAME_NUMBER_COLOR"]
+
+            # Convert to list and ensure we have 4 values (RGBA)
+            if isinstance(color_value, tuple):
+                color_list = list(color_value)
+            else:
+                color_list = list(color_value)
+
+            # If color has only 3 values (RGB), add alpha (255 = fully opaque)
+            if len(color_list) == 3:
+                color_list.append(255)
+            elif len(color_list) < 3:
+                # Fallback to white with full opacity
+                color_list = [255, 255, 255, 255]
+
             self.special_numbers_vars[number] = {
                 "length": tk.DoubleVar(value=self.configs_dic["frame"]["FRAME_SPECIAL_NUMBERS"][number]["length"] or
-                                      self.configs_dic["frame"]["FRAME_NUMBER_LENGTH"]),
+                                    self.configs_dic["frame"]["FRAME_NUMBER_LENGTH"]),
                 "thickness": tk.DoubleVar(value=self.configs_dic["frame"]["FRAME_SPECIAL_NUMBERS"][number]["thickness"] or
                                         self.configs_dic["frame"]["FRAME_NUMBER_THICKNESS"]),
-                "color": list(self.configs_dic["frame"]["FRAME_SPECIAL_NUMBERS"][number]["color"] or
-                            self.configs_dic["frame"]["FRAME_NUMBER_COLOR"])
+                "color": color_list  # Now this is a list [R, G, B, A]
             }
-
 
         # Length control
         length_frame = ttk.Frame(frame)
@@ -363,7 +382,7 @@ class App:
         var = self.special_numbers_vars[number]["length"]
 
         minus_btn = ttk.Button(length_frame, text="-", width=3,
-                              command=lambda: self.adjust_special_number_value(number, "length", -1))
+                            command=lambda: self.adjust_special_number_value(number, "length", -1))
         minus_btn.pack(side="left", padx=(0, 5))
 
         entry = ttk.Entry(length_frame, textvariable=var, width=10)
@@ -382,14 +401,14 @@ class App:
         var_thickness = self.special_numbers_vars[number]["thickness"]
 
         minus_btn2 = ttk.Button(thickness_frame, text="-", width=3,
-                              command=lambda: self.adjust_special_number_value(number, "thickness", -1))
+                            command=lambda: self.adjust_special_number_value(number, "thickness", -1))
         minus_btn2.pack(side="left", padx=(0, 5))
 
         entry2 = ttk.Entry(thickness_frame, textvariable=var_thickness, width=10)
         entry2.pack(side="left")
 
         plus_btn2 = ttk.Button(thickness_frame, text="+", width=3,
-                              command=lambda: self.adjust_special_number_value(number, "thickness", 1))
+                            command=lambda: self.adjust_special_number_value(number, "thickness", 1))
         plus_btn2.pack(side="left", padx=(5, 0))
 
         # Color control
@@ -398,7 +417,7 @@ class App:
 
         ttk.Label(color_frame, text="Color:", width=8).pack(side="left")
 
-        # Color preview
+        # Color preview - using only RGB for background color
         preview_color = self.special_numbers_vars[number]["color"]
         color_preview = tk.Frame(color_frame, height=20, width=60,
                                 bg=self.rgb_to_hex(preview_color[:3]))
@@ -409,8 +428,51 @@ class App:
 
         # Color picker button
         color_btn = ttk.Button(color_frame, text="Pick Color",
-                              command=lambda n=number: self.pick_special_number_color(n))
+                            command=lambda n=number: self.pick_special_number_color(n))
         color_btn.pack(side="left")
+
+        # Alpha control (شفافیت)
+        alpha_frame = ttk.Frame(frame)
+        alpha_frame.pack(fill="x", pady=5)
+
+        ttk.Label(alpha_frame, text="Alpha:", width=8).pack(side="left")
+
+        # Get current alpha value (index 3 in color list)
+        current_alpha = self.special_numbers_vars[number]["color"][3]
+
+        # Create IntVar for alpha
+        alpha_var = tk.IntVar(value=current_alpha)
+
+        # Store alpha variable reference
+        self.special_numbers_vars[number]["alpha_var"] = alpha_var
+
+        # Create scale widget (slider)
+        alpha_scale = ttk.Scale(
+            alpha_frame,
+            from_=0,
+            to=255,
+            variable=alpha_var,
+            command=lambda val, n=number: self.update_special_number_alpha(n, int(float(val)))
+        )
+        alpha_scale.pack(side="left", fill="x", expand=True, padx=(0, 10))
+
+        # Label to show current alpha value
+        alpha_label = ttk.Label(alpha_frame, text=str(current_alpha), width=4)
+        alpha_label.pack(side="left")
+
+        # Store reference to alpha label
+        self.special_numbers_vars[number]["alpha_label"] = alpha_label
+
+
+
+
+
+    def update_special_number_alpha(self, number, alpha_value):
+        """Update alpha color"""
+        self.special_numbers_vars[number]["color"][3] = alpha_value
+
+        self.special_numbers_vars[number]["alpha_label"].config(text=str(alpha_value))
+
 
     def adjust_special_number_value(self, number, property_name, delta):
         """Adjust value for special number property"""
@@ -633,8 +695,7 @@ class App:
         ttk.Label(number_alpha_frame, text="Alpha:").pack(side="left", padx=(0, 5))
 
         number_alpha_slider = ttk.Scale(number_alpha_frame, from_=0, to=255,
-                                       variable=self.number_alpha_var,
-                                       command=lambda v: self.update_frame_alpha("FRAME_NUMBER_COLOR", self.number_color_preview, int(v)))
+                                       variable=self.number_alpha_var)
         number_alpha_slider.pack(side="left", fill="x", expand=True, padx=5)
 
         self.number_alpha_label = ttk.Label(number_alpha_frame, text=str(self.number_alpha_var.get()), width=3)
@@ -891,3 +952,8 @@ class App:
 if __name__ == "__main__":
     app = App()
     app.run()
+
+
+
+
+

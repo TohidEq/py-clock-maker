@@ -43,20 +43,31 @@ def draw_frame(configs_dic, preview=False, preview_window=False):
             x_outer = center[0] + outer_r * math.cos(angle)
             y_outer = center[1] + outer_r * math.sin(angle)
 
-            length = (
-                configs_dic["frame"]["FRAME_SPECIAL_NUMBERS"].get(hour, {}).get("length")
-                or configs_dic["frame"]["FRAME_NUMBER_LENGTH"] * configs_dic["frame"]["FRAME_SCALE"]
-            )
+            length = 0
+            thickness = 0
+            normal_length = configs_dic["frame"]["FRAME_NUMBER_LENGTH"] * configs_dic["frame"]["FRAME_SCALE"]
+            normal_thickness = configs_dic["frame"]["FRAME_NUMBER_THICKNESS"] * configs_dic["frame"]["FRAME_SCALE"]
+            if hour in [3,6,9,12]:
+                s_length = configs_dic["frame"]["FRAME_SPECIAL_NUMBERS"][hour]["length"]
+                s_thickness= configs_dic["frame"]["FRAME_SPECIAL_NUMBERS"][hour]["thickness"]
+                if s_length >=0:
+                    length=s_length * configs_dic["frame"]["FRAME_SCALE"]
+                else:
+                    length = normal_length
 
-            thickness = (
-                configs_dic["frame"]["FRAME_SPECIAL_NUMBERS"].get(hour, {}).get("thickness")
-                or configs_dic["frame"]["FRAME_NUMBER_THICKNESS"] * configs_dic["frame"]["FRAME_SCALE"]
-            )
+                if s_thickness >=0:
+                    thickness = s_thickness
+                else:
+                    thickness = normal_thickness
+
+            else:
+                length = normal_length
+                thickness = normal_thickness
 
             color = (
                 configs_dic["frame"]["FRAME_SPECIAL_NUMBERS"].get(hour, {}).get("color")
-                or configs_dic["frame"]["FRAME_NUMBER_COLOR"]
-            )
+                or configs_dic["frame"]["FRAME_NUMBER_COLOR"])
+
 
             if configs_dic["frame"]["FRAME_NUMBER_SHAPE"] == 'circle':
                 temp = Image.new("RGBA", (length, length), (0,0,0,0))
