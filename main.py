@@ -14,6 +14,14 @@ from export_images import export_frame, export_pointer
 
 class App:
     def __init__(self):
+        self.img_config_dic={
+            "BASE_DIR":"./clockimgs/",
+            "FRAME_DIR":"frames/",
+            "POINTER_DIR":"hms/",
+            "H_POINTER_DIR":"h/",
+            "M_POINTER_DIR":"m/",
+            "S_POINTER_DIR":"s/"
+        }
         self.configs_dic = {
             "pointer": {
                 "POINTER_SHAPE": "circle",
@@ -183,16 +191,31 @@ class App:
             self.show_placeholder_images()
 
     def export_frame_images(self):
-        print(0)
+        export_frame(configs_dic = self.configs_dic,
+            base_dir = self.img_config_dic["BASE_DIR"],
+            frame_dir = self.img_config_dic["FRAME_DIR"])
+
 
     def export_h_images(self):
-        print(1)
+        export_pointer(configs_dic = self.configs_dic,
+            hms="h",
+            base_dir = self.img_config_dic["BASE_DIR"],
+            pointer_dir = self.img_config_dic["POINTER_DIR"],
+            save_dir = self.img_config_dic["H_POINTER_DIR"])
 
     def export_m_images(self):
-        print(2)
+        export_pointer(configs_dic = self.configs_dic,
+            hms="m",
+            base_dir = self.img_config_dic["BASE_DIR"],
+            pointer_dir = self.img_config_dic["POINTER_DIR"],
+            save_dir = self.img_config_dic["M_POINTER_DIR"])
 
     def export_s_images(self):
-        print(3)
+        export_pointer(configs_dic = self.configs_dic,
+            hms="s",
+            base_dir = self.img_config_dic["BASE_DIR"],
+            pointer_dir = self.img_config_dic["POINTER_DIR"],
+            save_dir = self.img_config_dic["S_POINTER_DIR"])
 
 
 
