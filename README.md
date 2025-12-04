@@ -7,7 +7,7 @@
 
 ---
 
-**A minimal Python tool (with Tkinter + Pillow) for generating clock pointer images. It renders 61 pointer images (minute 0 → 60) with fully customizable configs such as size, shape, thickness, colors and more.**
+**A minimal Python tool (with Tkinter + Pillow) for generating clock pointer images. It renders 61 pointer images (00,01,02...60) with fully customizable configs such as size, shape, thickness, colors and more.**
 
 You can fully design your own hour, minute, and second pointers, then export them with a single click, ready to use in Eww or any other setup
 
@@ -35,7 +35,7 @@ python main.py
 
 - Full example (EWW)
 
-  <img src="assets/examples.png" alt="examples" style="border-radius: 6px;"/>
+  <img src="assets/py-clock-maker-exampless.png" alt="examples" style="border-radius: 6px;"/>
 
 - Frame example resault
 

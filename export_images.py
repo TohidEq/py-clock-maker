@@ -57,10 +57,12 @@ def export_pointer(configs_dic,hms="h",base_dir="./clockimgs/", pointer_dir="hms
 
 
     for i in range(0,60+1):
-      file_name = hms+"-"+str(i)+".png"
-      img = draw_pointer(i,configs_dic)
-      img.save(os.path.join(full_dir + file_name))
-
+        x=str(i)
+        if len(x)==1:
+            x="0"+x
+        file_name = hms+"-"+x+".png"
+        img = draw_pointer(i,configs_dic)
+        img.save(os.path.join(full_dir + file_name))
 
     notification.notify(
         title=f"{hms}-Pointers exported at:",
