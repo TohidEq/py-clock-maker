@@ -333,7 +333,7 @@ class App:
         ttk.Separator(main_frame, orient='horizontal').pack(fill='x', pady=20)
 
         # Apply to all button
-        apply_all_btn = ttk.Button(main_frame, text="The (-1) is same as normal numbers value")
+        apply_all_btn = ttk.Label(main_frame, text="The (-1) is same as normal numbers value")
         apply_all_btn.pack(pady=10)
 
 
@@ -519,10 +519,10 @@ class App:
 
         # Numeric controls in left column
         numeric_settings = [
-            ("POINTER_SCALE", "Scale", 4),
-            ("POINTER_START_AT", "Start At (px)", 80),
-            ("POINTER_LENGTH", "Length/Radius", 20),
-            ("POINTER_THICKNESS", "Thickness", 10),
+            ("POINTER_SCALE", "Scale", config.configs_dic["pointer"]["POINTER_SCALE"]),
+            ("POINTER_START_AT", "Start At (px)", config.configs_dic["pointer"]["POINTER_START_AT"]),
+            ("POINTER_LENGTH", "Length/Radius", config.configs_dic["pointer"]["POINTER_LENGTH"]),
+            ("POINTER_THICKNESS", "Thickness", config.configs_dic["pointer"]["POINTER_THICKNESS"]),
         ]
 
         self.numeric_vars = {}

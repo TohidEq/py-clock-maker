@@ -8,39 +8,39 @@ img_config_dic={
     "S_POINTER_DIR":"s/"
 }
 
-configs_dic = {
+configs_dic =  {
     "pointer": {
         "POINTER_SHAPE": "line",
-        "POINTER_SCALE": 3,
-        "POINTER_START_AT": 90,
-        "POINTER_LENGTH": 25,
-        "POINTER_THICKNESS": 6,
-        "POINTER_COLOR": (0, 0, 0, 200),
+        "POINTER_SCALE": 8,
+        "POINTER_START_AT": 47,
+        "POINTER_LENGTH": 22,
+        "POINTER_THICKNESS": 7,
+        "POINTER_COLOR": (180, 120, 40, 255),
         "POINTER_ROUND_START": True,
         "POINTER_ROUND_END": True,
-        "POINTER_SIZE": 180,
+        "POINTER_SIZE": 201,
     },
     "frame": {
-        "FRAME_SCALE": 3,
-        "FRAME_CLOCK_PADDING": 5,
+        "FRAME_SCALE": 8,
+        "FRAME_CLOCK_PADDING": 12,
         "FRAME_HAS_BORDER": False,
-        "FRAME_BORDER_THICKNESS": 0,
-        "FRAME_BORDER_COLOR": (0, 0, 0, 255),
-        "FRAME_CLOCK_BG_COLOR": (255, 255, 255, 255),
-        "FRAME_HAS_NUMBERS": False,
+        "FRAME_BORDER_RADIUS": 3,
+        "FRAME_BORDER_COLOR": (120, 80, 40, 155),
+        "FRAME_CLOCK_BG_COLOR": (240, 230, 210, 155),
+        "FRAME_HAS_NUMBERS": True,
         "FRAME_NUMBER_SHAPE": "line",
-        "FRAME_NUMBER_LENGTH": 10,
-        "FRAME_NUMBER_THICKNESS": 2,
-        "FRAME_NUMBER_COLOR": (0, 0, 0, 150),
-        "FRAME_NUMBER_OFFSET": 5,
+        "FRAME_NUMBER_LENGTH": 18,
+        "FRAME_NUMBER_THICKNESS": 3,
+        "FRAME_NUMBER_COLOR": (40, 40, 40, 155),
+        "FRAME_NUMBER_OFFSET": 10,
         "FRAME_NUMBER_RADIUS": 0,
         "FRAME_SPECIAL_NUMBERS": {
-            3: {"length": -1, "thickness": -1, "color": None},
-            6: {"length": -1, "thickness": -1, "color": None},
-            9: {"length": -1, "thickness": -1, "color": None},
-            12: {"length": -1, "thickness": -1, "color": None},
+            3: {"length": -1, "thickness": -1, "color": (40, 40, 40, 155)},
+            6: {"length": -1, "thickness": -1, "color": (40, 40, 40, 155)},
+            9: {"length": -1, "thickness": -1, "color": (40, 40, 40, 155)},
+            12: {"length": -1, "thickness": -1, "color": (40, 40, 40, 155)},
         },
-        "FRAME_SIZE": 180,
+        "FRAME_SIZE": 201,
     }
 }
 
