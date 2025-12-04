@@ -333,8 +333,7 @@ class App:
         ttk.Separator(main_frame, orient='horizontal').pack(fill='x', pady=20)
 
         # Apply to all button
-        apply_all_btn = ttk.Button(main_frame, text="Apply to All Special Numbers",
-                                  command=self.apply_to_all_special_numbers)
+        apply_all_btn = ttk.Button(main_frame, text="The (-1) is same as normal numbers value")
         apply_all_btn.pack(pady=10)
 
 
@@ -494,9 +493,8 @@ class App:
             current_alpha = self.special_numbers_vars[number]["color"][3]
             self.special_numbers_vars[number]["color"] = [r, g, b, current_alpha]
 
-    def apply_to_all_special_numbers(self):
-        """Apply current special number settings to all special numbers"""
-        pass  # We'll implement this in update_all_values
+
+
     def create_pointer_controls(self, parent):
         # Main container for pointer controls
         main_frame = tk.Frame(parent)
